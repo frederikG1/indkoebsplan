@@ -2,13 +2,21 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
-  "devDependencies": {},
+  "main": "src/app.ts",
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/express-session": "^1.19.0",
+    "@types/node": "^26.6.6",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx nodemon app.js",
-    "setup-db": "node database/createDatabase.js",
-    "reset-db": "node database/createDatabase.js --delete"
+    "dev": "tsx watch src/app.ts",
+    "start": "tsx src/app.ts",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
@@ -22,7 +30,7 @@
     "express-rate-limit": "^8.7.3",
     "express-session": "^1.19.0",
     "memorystore": "^1.6.8",
-    "nodemon": "^3.1.14",
-    "sqlite": "^5.1.1"
+    "sqlite": "^5.1.1",
+    "sqlite3": "^6.0.1"
   }
 }
