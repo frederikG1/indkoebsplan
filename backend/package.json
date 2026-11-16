@@ -21,7 +21,8 @@
     "reset-db": "tsx src/database/createDatabase.ts --delete",
     "seed-db": "tsx src/database/seed.ts",
     "import-offers": "tsx src/offers/importOffers.ts",
-    "fetch-offers": "tsx src/offers/tjek/fetchTjek.ts"
+    "fetch-offers": "tsx src/offers/tjek/fetchTjek.ts",
+    "analyze-offers": "tsx src/offers/tjek/analyzeOffers.ts"
   },
   "keywords": [],
   "author": "",

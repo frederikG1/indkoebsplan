@@ -2,6 +2,8 @@
 export type TjekOffer = {
   id: string;
   heading: string;
+  description: string | null;
+  category_ids: string[];
   pricing: {
     price: number;
     pre_price: number | null;
