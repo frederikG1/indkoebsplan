@@ -1,5 +1,5 @@
-import db from "../database/connection.ts";
-import { loadCategories } from "./categories.ts";
+import db from "./connection.ts";
+import { loadCategories } from "../core/categories.ts";
 
 // Kør: npm run seed-categories
 // categories.json er den eneste kilde til taksonomien (se docs/matching.md).

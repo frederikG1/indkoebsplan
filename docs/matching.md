@@ -2,7 +2,7 @@
 
 ## Taksonomi
 
-Taksonomien er den faste liste over varer (kategorier), som både indkøbslisten og tilbuddene kobles til. Den ligger i `backend/src/categories/categories.json` og seedes med `npm run seed-categories`.
+Taksonomien er den faste liste over varer (kategorier), som både indkøbslisten og tilbuddene kobles til. Den ligger i `backend/src/core/categories.json` og seedes med `npm run seed-categories`.
 
 ### Regler
 
@@ -17,7 +17,7 @@ Taksonomien er den faste liste over varer (kategorier), som både indkøbslisten
 - Hver kategori har `keywords`: et tilbud matcher, hvis overskriften indeholder et af dem (uden forskel på store og små bogstaver).
 - `excludeKeywords` er ord, der udelukker et match, fx "mælkechokolade" for mælk.
 - Overskriften normaliseres før match: små bogstaver, alt der ikke er et bogstav eller et tal (fx bindestreg, komma og %) erstattes af mellemrum, og der sættes et mellemrum i hver ende. Keywords skrives derfor uden tegn ("led pærer", ikke "led-pærer").
-- Matcheren ligger i `backend/src/categories/categories.ts` (`matchCategories`).
+- Matcheren ligger i `backend/src/core/categories.ts` (`matchCategories`).
 - Korte keywords ("te", "æg", "ris") rammer ofte inde i andre ord ("entrecote", "pålæg", "gris"). De skrives derfor med mellemrum omkring (`" te "`), så de kun matcher som hele ord. Lange keywords står uden mellemrum, så de også fanger sammensatte ord ("kyllingebrystfilet").
 - Mærker bruges kun som keyword, når mærket kun laver én slags vare (fx "Lavazza"). Mærker som Cheasy og Arla laver mange varer og bruges derfor ikke.
 

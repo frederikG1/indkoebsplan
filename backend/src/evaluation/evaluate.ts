@@ -1,7 +1,7 @@
 import { execSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { loadCategories, matchCategories } from "../categories/categories.ts";
+import { loadCategories, matchCategories } from "../core/categories.ts";
 
 // Kører matchingen på testsættet og sammenligner med facit. Definitionerne står i docs/matching.md.
 // Kør: npm run evaluate
@@ -108,7 +108,7 @@ function commitInfo(): string {
   try {
     const cwd = import.meta.dirname;
     const hash = execSync("git rev-parse --short HEAD", { cwd }).toString().trim();
-    const dirty = execSync("git status --porcelain -- ../categories .", { cwd }).toString().trim();
+    const dirty = execSync("git status --porcelain -- ../core .", { cwd }).toString().trim();
     return dirty ? `${hash} (med ændringer, der ikke er committet)` : hash;
   } catch {
     return "ukendt";
