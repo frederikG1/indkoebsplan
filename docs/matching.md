@@ -16,7 +16,8 @@ Taksonomien er den faste liste over varer (kategorier), som både indkøbslisten
 
 - Hver kategori har `keywords`: et tilbud matcher, hvis overskriften indeholder et af dem (uden forskel på store og små bogstaver).
 - `excludeKeywords` er ord, der udelukker et match, fx "mælkechokolade" for mælk.
-- Overskriften normaliseres før match: små bogstaver, tegn og punktummer erstattes af mellemrum, og der sættes et mellemrum i hver ende.
+- Overskriften normaliseres før match: små bogstaver, alt der ikke er et bogstav eller et tal (fx bindestreg, komma og %) erstattes af mellemrum, og der sættes et mellemrum i hver ende. Keywords skrives derfor uden tegn ("led pærer", ikke "led-pærer").
+- Matcheren ligger i `backend/src/categories/categories.ts` (`matchCategories`).
 - Korte keywords ("te", "æg", "ris") rammer ofte inde i andre ord ("entrecote", "pålæg", "gris"). De skrives derfor med mellemrum omkring (`" te "`), så de kun matcher som hele ord. Lange keywords står uden mellemrum, så de også fanger sammensatte ord ("kyllingebrystfilet").
 - Mærker bruges kun som keyword, når mærket kun laver én slags vare (fx "Lavazza"). Mærker som Cheasy og Arla laver mange varer og bruges derfor ikke.
 
@@ -84,3 +85,31 @@ Reglerne er skrevet, før mærkningen begyndte, og er ikke ændret undervejs.
 - Facit er lavet af en sprogmodel og ikke af et menneske.
 - Med 86 kategorier får de fleste kategorier kun få eksempler. Hovedtallet er derfor samlet precision og recall over alle tilbud.
 - Ugen er præget af jul, hvilket giver mange `ingen`.
+
+## Evaluering
+
+`npm run evaluate` (i backend) kører matcheren på testsættet og sammenligner med facit. Scriptet er `backend/src/evaluation/evaluate.ts`, og det giver samme tal hver gang på samme data.
+
+### Definitioner
+
+- **Enheden er et (tilbud, kategori)-par.** Facit for et tilbud er mængden af kategorier i testsættet (tom ved `ingen`). Matcherens svar er mængden af kategorier, den finder.
+- **TP** (sand positiv): parret står både i facit og i svaret. **FP** (falsk positiv): kun i svaret. **FN** (falsk negativ): kun i facit.
+- **Precision** = TP / (TP + FP): hvor stor en del af matcherens svar der er rigtige.
+- **Recall** = TP / (TP + FN): hvor stor en del af facit matcheren finder.
+- Tallene er samlet over alle par (micro). Tilbud med flere varer vægter derfor tungere end tilbud med én.
+- **Falske alarmer:** antal `ingen`-tilbud, hvor matcheren alligevel svarer noget. Det er den fejl, en bruger ser som et forkert tilbud.
+- Precision og recall pr. kategori vises kun for kategorier med mindst 5 facit-eksempler. Ved færre er tallet for usikkert.
+- Output indeholder dato og commit. Er taksonomien eller testsættet ændret uden commit, står det ved commit'en.
+
+### Resultater
+
+**Runde 1: baseline** (2026-11-17, keyword-matching som beskrevet ovenfor). Målt på udviklingssættet, som keywords er skrevet ud fra, så tallene er optimistiske.
+
+| Mål | Værdi |
+|---|---|
+| Precision | 91,2 % |
+| Recall | 86,1 % |
+| TP / FP / FN | 155 / 15 / 25 |
+| Falske alarmer på `ingen`-tilbud | 11 af 234 |
+
+De største svagheder er Slik (recall 2 af 14) og Chokolade (1 af 5), hvor varetypen ofte kun står som et mærke eller produktnavn ("Juleskum", "Guld barre"), samt marinerede varer ("brystfilet med lage"), som matcheren ikke kan skelne fra rå varer.

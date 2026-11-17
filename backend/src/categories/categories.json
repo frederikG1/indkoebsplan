@@ -24,7 +24,7 @@
 
   { "name": "Bananer", "keywords": ["banan"], "excludeKeywords": ["bananchips"] },
   { "name": "Æbler", "keywords": ["æbler"], "excludeKeywords": ["æblemost", "æblejuice", "æbleskiver"] },
-  { "name": "Pærer", "keywords": ["pærer"], "excludeKeywords": ["led-pærer", "led pærer", "elpærer"] },
+  { "name": "Pærer", "keywords": ["pærer"], "excludeKeywords": ["led pærer", "elpærer"] },
   { "name": "Appelsiner", "keywords": ["appelsiner", "klementiner", "clementiner", "mandariner"], "excludeKeywords": ["appelsinjuice"] },
   { "name": "Citroner", "keywords": ["citroner"], "excludeKeywords": [] },
   { "name": "Avocado", "keywords": ["avocado"], "excludeKeywords": [] },
