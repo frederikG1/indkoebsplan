@@ -3,7 +3,7 @@ import { join } from "node:path";
 import db from "../database/connection.ts";
 
 // Kør: npm run seed-categories
-// categories.json er den eneste kilde til taksonomien (se docs/taksonomi.md).
+// categories.json er den eneste kilde til taksonomien (se docs/matching.md).
 // Kun navnet gemmes i databasen. Keywords læses fra filen af matchingen.
 type Category = {
   name: string;
