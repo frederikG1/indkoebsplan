@@ -39,6 +39,9 @@ Reglerne for, hvordan en indkøbsliste bliver til planer for 1–3 butikker. Pla
 - **Referenceplanen** er den billigste plan med én butik (flest dækkede varer først).
 - **Besparelse** = referenceplanens pris minus planens pris for de varer, begge planer dækker.
 - **Ekstra km** = planens rute minus referenceplanens rute. Den kan være negativ.
+- En kombination, hvor en af kæderne ikke er billigst på nogen vare, droppes. Den er bare en mindre plan med en overflødig butik.
+- Ved samme pris i to kæder vælges kæden med laveste id, så planerne altid bliver de samme.
+- Besparelsen kan være negativ, hvis planen er dyrere end referencen på de fælles varer. Den vises, som den er.
 
 **Hvorfor:** Uden en regel for dækning vil den billigste plan altid være den, der dækker færrest varer. Når besparelse og km måles mod den samme reference, kan brugeren se, hvad en ekstra butik koster og giver. Førpriser kan ikke bruges, fordi kun 2 % af tilbuddene har en.
 

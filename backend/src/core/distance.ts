@@ -27,7 +27,7 @@ export function distanceKm(from: Coordinates, to: Coordinates): number {
   return 2 * EARTH_RADIUS_KM * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
-const MAX_STOPS = 3;
+export const MAX_STOPS = 3;
 
 // Alle rækkefølger af listen, fx [a, b] → [[a, b], [b, a]].
 function permutations<T>(items: T[]): T[][] {
