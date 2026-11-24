@@ -1,4 +1,4 @@
-import type { Plan } from "../../../shared/types.ts"
+import type { Plan } from "../../../shared/types"
 
 export const examplePlan: Plan = {
     chainIds: [1, 2],
