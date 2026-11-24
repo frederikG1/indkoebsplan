@@ -1,3 +1,4 @@
+import type { Plan, PlanLine } from "../../../shared/types.ts";
 import { MAX_STOPS } from "./distance.ts";
 
 // Beregner planer for 1–3 kæder ud fra listepunkter med matchede tilbud.
@@ -16,22 +17,6 @@ export type PlanItem = {
   name: string;
   quantity: number;
   offers: PlanOffer[];
-};
-
-// Én vare i en plan. Er alle tre felter null, er varen "uden pris" i planen.
-export type PlanLine = {
-  itemId: number;
-  offerId: number | null;
-  chainId: number | null;
-  priceCents: number | null; // tilbudspris × antal på listen
-};
-
-export type Plan = {
-  chainIds: number[];
-  lines: PlanLine[];
-  totalCents: number;
-  coveredCount: number;
-  savingsCents: number; // i forhold til referenceplanen; kan være negativ
 };
 
 export const DEFAULT_MAX_STORES = 2;
